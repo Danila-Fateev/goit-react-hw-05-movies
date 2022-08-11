@@ -25,7 +25,12 @@ export default function MovieDetails() {
       <h1>
         {title} {release_date?.substring(0, 4)}
       </h1>
+      <p>User score: {`${vote_average * 10}%`}</p>
       <img src="" alt={title} />
+      <h2>Overview</h2>
+      <p>{overview}</p>
+      <h2>Genres</h2>
+      <p>{genres?.map(genre => `${genre.name} `)}</p>
     </main>
   );
 }
