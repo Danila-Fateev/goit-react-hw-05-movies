@@ -1,4 +1,4 @@
-import { NavLink, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import SharedLayout from './SharedLayout';
 import Home from 'pages/Home';
 import Movies from 'pages/Movies';
