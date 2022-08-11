@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
-  const [mainMovieList, setMainMovieList] = useState([]);
+  const [homeMovieList, setHomeMovieList] = useState([]);
 
   useEffect(() => {
     const fetchTrendingMovies = async () => {
@@ -13,7 +13,7 @@ export default function Home() {
         .then(r => r.results)
         .catch(error => console.log(error));
 
-      setMainMovieList([...fetchedMovies]);
+      setHomeMovieList([...fetchedMovies]);
     };
 
     fetchTrendingMovies();
@@ -23,7 +23,7 @@ export default function Home() {
     <main>
       <h1>Trending today</h1>
       <ul>
-        {mainMovieList.map(movie => (
+        {homeMovieList.map(movie => (
           <li key={movie.id}>
             <Link to={`movies/${movie.id}`}>{movie.title ?? movie.name}</Link>
           </li>
