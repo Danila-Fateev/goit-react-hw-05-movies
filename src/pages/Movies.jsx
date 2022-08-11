@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 export default function Movies() {
   const [query, setQuery] = useState('');
   const [moviesList, setMoviesList] = useState([]);
-
+  const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
     if (!query) return;
     const fetchQueryMovies = async () => {
@@ -26,10 +26,16 @@ export default function Movies() {
     setQuery(inputValue);
   };
 
+  const updateQueryString = e => {
+    const name = e.target.value;
+    const nextParams = name !== '' ? { name } : {};
+    setSearchParams(nextParams);
+  };
+
   return (
     <main>
       <form onSubmit={newQuery}>
-        <input name="query" type="text" />
+        <input name="query" type="text" onChange={updateQueryString} />
         <button type="submit">Search</button>
       </form>
 

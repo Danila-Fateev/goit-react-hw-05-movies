@@ -22,8 +22,10 @@ export default function MovieDetails() {
 
   return (
     <main>
-      <h1></h1>
-      <img src="" alt="" />
+      <h1>
+        {title} {release_date?.substring(0, 4)}
+      </h1>
+      <img src="" alt={title} />
     </main>
   );
 }
