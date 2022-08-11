@@ -1,1 +1,1 @@
-export default PageNotFound = () => {};
+export default function PageNotFound() {}

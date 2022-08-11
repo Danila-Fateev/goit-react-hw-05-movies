@@ -1,1 +1,1 @@
-export default Reviews = () => {};
+export default function Reviews() {}

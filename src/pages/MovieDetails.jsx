@@ -1,1 +1,1 @@
-export default MovieDetails = () => {};
+export default function MovieDetails() {}

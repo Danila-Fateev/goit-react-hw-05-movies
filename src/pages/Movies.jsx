@@ -1,1 +1,1 @@
-export default Movies = () => {};
+export default function Movies() {}

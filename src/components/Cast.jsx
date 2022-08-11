@@ -1,1 +1,1 @@
-export default Cast = () => {};
+export default function Cast() {}
