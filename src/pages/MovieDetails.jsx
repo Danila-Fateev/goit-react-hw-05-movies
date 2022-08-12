@@ -42,7 +42,7 @@ export default function MovieDetails() {
         </div>
         <div className="TextMovieBox">
           <h1>
-            {title} {release_date?.substring(0, 4)}
+            {title} {`(${release_date?.substring(0, 4)})`}
           </h1>
           <p>User score: {`${userScore}%`}</p>
           <h2>Overview</h2>
