@@ -1,7 +1,13 @@
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+
+import GoBackLink from 'components/GoBackLink';
+
 export default function MovieDetails() {
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/home';
+  console.log(location);
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
 
@@ -25,6 +31,7 @@ export default function MovieDetails() {
 
   return (
     <main>
+      <GoBackLink to={backLinkHref} />
       <h1>
         {title} {release_date?.substring(0, 4)}
       </h1>
@@ -36,6 +43,7 @@ export default function MovieDetails() {
       <h2>Genres</h2>
       <p>{genres?.map(genre => `${genre.name} `)}</p>
       <hr />
+      <p>Additional informaton</p>
       <ul>
         <li>
           <Link to="cast">Cast</Link>

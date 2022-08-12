@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 
 export default function Movies() {
   const [query, setQuery] = useState('');
   const [moviesList, setMoviesList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
 
   useEffect(() => {
     if (!query) return;
@@ -43,7 +44,9 @@ export default function Movies() {
       <ul>
         {moviesList.map(movie => (
           <li key={movie.id}>
-            <Link to={`${movie.id}`}>{movie.title ?? movie.name}</Link>
+            <Link to={`${movie.id}`} state={{ from: location }}>
+              {movie.title ?? movie.name}
+            </Link>
           </li>
         ))}
       </ul>
