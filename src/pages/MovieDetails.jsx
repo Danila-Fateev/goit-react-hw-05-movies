@@ -44,6 +44,7 @@ export default function MovieDetails() {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
+      <hr />
       <Outlet />
     </main>
   );

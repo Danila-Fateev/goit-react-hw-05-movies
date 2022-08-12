@@ -5,6 +5,7 @@ export default function Movies() {
   const [query, setQuery] = useState('');
   const [moviesList, setMoviesList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
     if (!query) return;
     const fetchQueryMovies = async () => {
@@ -27,8 +28,8 @@ export default function Movies() {
   };
 
   const updateQueryString = e => {
-    const name = e.target.value;
-    const nextParams = name !== '' ? { name } : {};
+    const queryInput = e.target.value;
+    const nextParams = queryInput !== '' ? { queryInput } : {};
     setSearchParams(nextParams);
   };
 
