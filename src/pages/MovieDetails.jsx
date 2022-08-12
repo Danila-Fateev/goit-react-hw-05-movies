@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 
 import GoBackLink from 'components/GoBackLink';
 
+import { Suspense } from 'react';
+
 export default function MovieDetails() {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
@@ -66,7 +68,9 @@ export default function MovieDetails() {
             </li>
           </ul>
           <hr />
-          <Outlet />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
         </>
       )}
     </main>
