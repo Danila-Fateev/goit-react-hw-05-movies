@@ -11,7 +11,8 @@ export default function Cast() {
         `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=15d494776c3d35f24fb32811ec733217&language=en-US`
       )
         .then(r => r.json())
-        .then(r => r.cast);
+        .then(r => r.cast)
+        .catch(error => console.log(error));
       setMovieCredits([...fetchedCredits]);
     };
 
