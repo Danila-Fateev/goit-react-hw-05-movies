@@ -17,8 +17,10 @@ export default function MovieDetails() {
       const fetchedMovieDetails = await fetch(
         `https://api.themoviedb.org/3/movie/${movieId}?api_key=15d494776c3d35f24fb32811ec733217`
       )
-        .then(r => r.json())
-        .catch(error => console.log(error));
+        .then(r => {
+          return r.json();
+        })
+        .catch(error => console.log('error'));
 
       setMovieDetails(fetchedMovieDetails);
     };
@@ -33,36 +35,40 @@ export default function MovieDetails() {
   return (
     <main>
       <GoBackLink to={backLinkHref} />
-      <div className="MovieDetailsBox">
-        <div className="ImageMovieBox">
-          <img
-            src={`https://image.tmdb.org/t/p/w400${poster_path}`}
-            alt={title}
-          />
-        </div>
-        <div className="TextMovieBox">
-          <h1>
-            {title} {`(${release_date?.substring(0, 4)})`}
-          </h1>
-          <p>User score: {`${userScore}%`}</p>
-          <h2>Overview</h2>
-          <p>{overview}</p>
-          <h2>Genres</h2>
-          <p>{genres?.map(genre => `${genre.name} `)}</p>
-        </div>
-      </div>
-      <hr />
-      <p>Additional informaton</p>
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
-      <hr />
-      <Outlet />
+      {movieDetails && (
+        <>
+          <div className="MovieDetailsBox">
+            <div className="ImageMovieBox">
+              <img
+                src={`https://image.tmdb.org/t/p/w400${poster_path}`}
+                alt={title}
+              />
+            </div>
+            <div className="TextMovieBox">
+              <h1>
+                {title} {`(${release_date?.substring(0, 4)})`}
+              </h1>
+              <p>User score: {`${userScore}%`}</p>
+              <h2>Overview</h2>
+              <p>{overview}</p>
+              <h2>Genres</h2>
+              <p>{genres?.map(genre => `${genre.name} `)}</p>
+            </div>
+          </div>
+          <hr />
+          <p>Additional informaton</p>
+          <ul>
+            <li>
+              <Link to="cast">Cast</Link>
+            </li>
+            <li>
+              <Link to="reviews">Reviews</Link>
+            </li>
+          </ul>
+          <hr />
+          <Outlet />
+        </>
+      )}
     </main>
   );
 }
