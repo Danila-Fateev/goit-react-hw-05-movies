@@ -6,8 +6,7 @@ import GoBackLink from 'components/GoBackLink';
 
 export default function MovieDetails() {
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/home';
-  console.log(location);
+  const backLinkHref = location.state?.from ?? '/';
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
 

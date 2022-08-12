@@ -21,7 +21,7 @@ export default function Reviews() {
   return (
     <ul>
       {reviewsList.map(review => (
-        <li>
+        <li key={review.id}>
           <h3>Author: {review.author}</h3>
           <p>{review.content}</p>
           <hr />
