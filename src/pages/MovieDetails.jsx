@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 export default function MovieDetails() {
@@ -15,22 +15,36 @@ export default function MovieDetails() {
 
       setMovieDetails(fetchedMovieDetails);
     };
-    fetchMovieDetails();
-  }, []);
 
-  const { title, release_date, vote_average, overview, genres } = movieDetails;
+    fetchMovieDetails();
+  }, [movieId]);
+
+  const { title, release_date, vote_average, overview, genres, poster_path } =
+    movieDetails;
+  const userScore = Math.round(vote_average * 10);
 
   return (
     <main>
       <h1>
         {title} {release_date?.substring(0, 4)}
       </h1>
-      <p>User score: {`${vote_average * 10}%`}</p>
-      <img src="" alt={title} />
+
+      <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
+      <p>User score: {`${userScore}%`}</p>
       <h2>Overview</h2>
       <p>{overview}</p>
       <h2>Genres</h2>
       <p>{genres?.map(genre => `${genre.name} `)}</p>
+      <hr />
+      <ul>
+        <li>
+          <Link to="cast">Cast</Link>
+        </li>
+        <li>
+          <Link to="reviews">Reviews</Link>
+        </li>
+      </ul>
+      <Outlet />
     </main>
   );
 }
