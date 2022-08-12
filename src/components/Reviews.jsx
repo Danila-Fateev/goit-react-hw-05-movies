@@ -15,18 +15,25 @@ export default function Reviews() {
         .catch(error => console.log(error));
       setReviewsList([...fetchedReviews]);
     };
+
     fetchReviews();
   }, [movieId]);
 
   return (
-    <ul>
-      {reviewsList.map(review => (
-        <li key={review.id}>
-          <h3>Author: {review.author}</h3>
-          <p>{review.content}</p>
-          <hr />
-        </li>
-      ))}
-    </ul>
+    <>
+      {reviewsList.length === 0 ? (
+        <p>We don't have any reviews for this movie</p>
+      ) : (
+        <ul>
+          {reviewsList.map(review => (
+            <li key={review.id}>
+              <h3>Author: {review.author}</h3>
+              <p>{review.content}</p>
+              <hr />
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
   );
 }

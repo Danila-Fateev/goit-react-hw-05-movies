@@ -1,3 +1,5 @@
+import '../styles.css';
+
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 
@@ -37,14 +39,16 @@ export default function Movies() {
 
   return (
     <main>
-      <form onSubmit={newQuery}>
+      <form onSubmit={newQuery} className="SearchForm">
         <input
           name="query"
           type="text"
           onChange={updateQueryString}
           value={searchParamInput}
         />
-        <button type="submit">Search</button>
+        <button type="submit" className="SearchButton">
+          Search
+        </button>
       </form>
 
       <ul>

@@ -1,4 +1,5 @@
 import { Outlet, NavLink } from 'react-router-dom';
+import '../styles.css';
 
 export default function SharedLayout() {
   return (
@@ -11,10 +12,15 @@ export default function SharedLayout() {
     >
       <header>
         <nav>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/movies">Movies</NavLink>
+          <NavLink className="NavLink" to="/">
+            Home
+          </NavLink>
+          <NavLink className="NavLink" to="/movies">
+            Movies
+          </NavLink>
         </nav>
       </header>
+      <hr />
       <Outlet />
     </div>
   );
