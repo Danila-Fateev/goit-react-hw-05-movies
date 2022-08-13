@@ -4,8 +4,6 @@ import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import GoBackLink from 'components/GoBackLink';
-
 import { Suspense } from 'react';
 
 export default function MovieDetails() {
@@ -13,7 +11,7 @@ export default function MovieDetails() {
   const backLinkHref = location.state?.from ?? '/';
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
-
+  console.log(backLinkHref);
   useEffect(() => {
     const fetchMovieDetails = async () => {
       const fetchedMovieDetails = await fetch(
@@ -36,7 +34,7 @@ export default function MovieDetails() {
 
   return (
     <main>
-      <GoBackLink to={backLinkHref} />
+      <Link to={backLinkHref}>Go back</Link>
       {movieDetails && (
         <>
           <div className="MovieDetailsBox">
