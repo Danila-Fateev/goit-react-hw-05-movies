@@ -11,7 +11,7 @@ export default function MovieDetails() {
   const backLinkHref = location.state?.from ?? '/';
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
-  console.log(backLinkHref);
+
   useEffect(() => {
     const fetchMovieDetails = async () => {
       const fetchedMovieDetails = await fetch(
@@ -59,10 +59,14 @@ export default function MovieDetails() {
           <p>Additional informaton</p>
           <ul>
             <li>
-              <Link to="cast">Cast</Link>
+              <Link to="cast" state={{ from: backLinkHref }}>
+                Cast
+              </Link>
             </li>
             <li>
-              <Link to="reviews">Reviews</Link>
+              <Link to="reviews" state={{ from: backLinkHref }}>
+                Reviews
+              </Link>
             </li>
           </ul>
           <hr />

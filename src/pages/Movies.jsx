@@ -25,6 +25,20 @@ export default function Movies() {
     fetchQueryMovies();
   }, [query]);
 
+  useEffect(() => {
+    const fetchSearchParamsMovies = async () => {
+      const fetchedSearchParamsMovies = await fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=15d494776c3d35f24fb32811ec733217&query=${searchParamInput}&page=1&include_adult=false`
+      )
+        .then(r => r.json())
+        .then(r => r.results)
+        .catch(error => console.log(error));
+      setMoviesList([...fetchedSearchParamsMovies]);
+    };
+
+    fetchSearchParamsMovies();
+  }, []);
+
   const newQuery = e => {
     e.preventDefault();
     const inputValue = e.target.elements.query.value;
