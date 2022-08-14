@@ -7,7 +7,8 @@ export default function Movies() {
   const [query, setQuery] = useState('');
   const [moviesList, setMoviesList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchParamInput = searchParams.get('queryInput') ?? '';
+  const searchParamInput = searchParams.get('inputValue') ?? '';
+
   const location = useLocation();
 
   useEffect(() => {
@@ -37,29 +38,20 @@ export default function Movies() {
     };
 
     fetchSearchParamsMovies();
-  }, []);
+  }, [searchParamInput]);
 
   const newQuery = e => {
     e.preventDefault();
     const inputValue = e.target.elements.query.value;
-    setQuery(inputValue);
-  };
-
-  const updateQueryString = e => {
-    const queryInput = e.target.value;
-    const nextParams = queryInput !== '' ? { queryInput } : {};
+    const nextParams = inputValue !== '' ? { inputValue } : {};
     setSearchParams(nextParams);
+    setQuery(inputValue);
   };
 
   return (
     <main>
       <form onSubmit={newQuery} className="SearchForm">
-        <input
-          name="query"
-          type="text"
-          onChange={updateQueryString}
-          value={searchParamInput}
-        />
+        <input name="query" type="text" />
         <button type="submit" className="SearchButton">
           Search
         </button>
