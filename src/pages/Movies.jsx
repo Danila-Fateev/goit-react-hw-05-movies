@@ -35,6 +35,7 @@ export default function Movies() {
         .catch(error => console.log(error));
       setMoviesList([...fetchedSearchParamsMovies]);
     };
+
     fetchSearchParamsMovies();
   }, []);
 
